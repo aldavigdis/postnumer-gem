@@ -1,0 +1,19 @@
+AllCops:
+  TargetRubyVersion: 2.6
+  NewCops: enable
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'spec/*'
+Metrics/ClassLength:
+  Enabled: false
+Style/OptionalBooleanParameter:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 20
+Layout/HashAlignment:
+  Exclude:
+    - 'lib/postnumer.rb'
+Style/CaseEquality:
+  Exclude:
+    - 'lib/postnumer.rb'
