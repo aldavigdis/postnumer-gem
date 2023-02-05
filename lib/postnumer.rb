@@ -109,6 +109,28 @@ class Postnumer
 
   attr_reader :locality, :code
 
+  def self.all
+    results = {}
+    POSTNUMERASKRA.each do |pnr_range, locality|
+      if pnr_range.is_a?(Integer)
+        results[pnr_range] = locality
+        next
+      end
+      pnr_range.to_a.each do |pnr|
+        results[pnr] = locality
+      end
+    end
+    results
+  end
+
+  def self.all_options
+    results = []
+    all.each do |pnr, locality|
+      results << ["#{pnr} #{locality}", pnr]
+    end
+    results
+  end
+
   def self.locality(postal_code)
     result = POSTNUMERASKRA.select { |p| p === postal_code.to_i }
 
