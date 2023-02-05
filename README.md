@@ -63,7 +63,7 @@ Postnumer.all_options
 # or `options_for_select` to build a form field from `Postnumer.all_options`.
 
 # In Rails:
-select('customer', 'postal_code', Postnumer.all)
+select('customer', 'postal_code', Postnumer.all_options)
 
 # In Formtastic or ActiveAdmin:
 f.input(:author, :as => :select,
@@ -113,11 +113,15 @@ pnr.code
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-Don't be afraid of using Rubocop for correcting your code and to make it conform to the standards defined in `.rubocop.yml`. You will want to run `bundle exec rubocop -A` to see if your code has any errors and correct them on the fly.
-
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/aldavigdis/postnumer-gem. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/aldavigdis/postnumer-gem/blob/master/CODE_OF_CONDUCT.md).
+
+Don't be afraid of using Rubocop for correcting your code and to make it conform to the standards defined in `.rubocop.yml`. If you need to add an exception, the please do so in your pull request and it will be looked into.
+
+You will want to run `bundle exec rubocop -A` to see if your code has any errors and correct them on the fly.
+
+Any pull request is welcome. Please write rspec tests for any contributed code if you have the capacity to.
 
 ## License
 
