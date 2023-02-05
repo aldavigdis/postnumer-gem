@@ -1,6 +1,27 @@
 # Postnumer
 
-The class validates, looks up and associates an Icelandic postal code with its locality.
+The Postnumer class validates, looks up and associates an Icelandic postal code
+with its postal locality.
+
+Icelandic postal codes are three numeric digits and may be handled as integers
+(as this gem does internally) or as strings (as you should do in your database).
+
+## What this gem does not and will not do
+
+As the role of the Icelandic postal code system is to facilitate mail sorting
+and distrubution. This gem will therefore mainly facilitate the validation or
+autocompletion of a pair of postal codes and their assigned localities.
+
+What this gem will *not* do is to facilitate the assumtion of other attributes
+often associated with Icelandic postal codes. This means that if you plan to use
+postal codes to assume things such as wether an Icelandic postal code is rural,
+is for a P.O. box, if it is within the Reykjavik Metropolitan Area or which
+administrative region it belongs to, you should roll your own solution for your
+own application and I wish you good luck in all your future endevours.
+
+The [author of this gem](https://aldavigdis.is/) will gladly provide a paid
+lecture on the pitfalls of postal addressing and postal code systems in Iceland
+and around the world.
 
 ## Installation
 
@@ -53,6 +74,11 @@ f.input(:author, :as => :select,
 Postnumer.valid?(310)
 => true
 
+# Numeric strings can also be passed to any method and will be cast internally using `String::to_i`:
+# (You should always store postal codes as strings in your database.)
+Postnumer.valid?("101")
+=> true
+
 # The `Postnumer.valid?` method will return `false` if the provided code is invalid:
 Postnumer.valid?(90210)
 => false
@@ -86,6 +112,8 @@ pnr.code
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+
+Don't be afraid of using Rubocop for correcting your code and to make it conform to the standards defined in `.rubocop.yml`. You will want to run `bundle exec rubocop -A` to see if your code has any errors and correct them on the fly.
 
 ## Contributing
 
