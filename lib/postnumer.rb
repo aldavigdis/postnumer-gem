@@ -2,8 +2,14 @@
 
 # The main Postnumer classs
 class Postnumer
+  # The current version of Postnumer
   VERSION = '0.2.0'
 
+  # The postal code registry
+  #
+  # This is based on the official list of Icelandic postal codes.
+  #
+  # @see https://www.byggdastofnun.is/is/postthjonusta/postnumer Póstnúmer, Byggðastofnun
   POSTNUMERASKRA = {
     101..113 => 'Reykjavík',
     116      => 'Reykjavík',
@@ -109,6 +115,11 @@ class Postnumer
 
   attr_reader :locality, :code
 
+  #
+  # Get every valid postal code as a hash
+  #
+  # @return [Hash]
+  #
   def self.all
     results = {}
     POSTNUMERASKRA.each do |pnr_range, locality|
@@ -123,6 +134,15 @@ class Postnumer
     results
   end
 
+  #
+  # Get every postal code as an array of arrays
+  #
+  # This is useful for bulding select elements in ActionView and Formtastic.
+  #
+  # @see https://api.rubyonrails.org/v7.0.4.2/classes/ActionView/Helpers/FormOptionsHelper.html
+  #
+  # @return [Array]
+  #
   def self.all_options
     results = []
     all.each do |pnr, locality|
@@ -131,6 +151,13 @@ class Postnumer
     results
   end
 
+  #
+  # Get the locality name of a specific postal code
+  #
+  # @param [Integer|String] postal_code The 3-digit Icelandic postal code
+  #
+  # @return [NilClass|String] Returns nil if invalid and the locality name as a string if valid
+  #
   def self.locality(postal_code)
     result = POSTNUMERASKRA.select { |p| p === postal_code.to_i }
 
@@ -139,12 +166,27 @@ class Postnumer
     result.first.last
   end
 
+  #
+  # Check the validity of a postal code
+  #
+  # If the postal code provided is a string and can be cast to an integer,
+  # the resulting integer value will be used to test for validity.
+  #
+  # @param [Integer|String] postal_code The 3-digit Icelandic postal code
+  # @return [Boolean] True if valid, false if invalid
+  #
   def self.valid?(postal_code)
     return true if locality(postal_code.to_i)
 
     false
   end
 
+  #
+  # Initialize a Postnumer object
+  #
+  # @param [Integer|String] postal_code The 3-digit Icelandic postal code
+  # @raise [ArgumentError] if the postal code is invalid
+  #
   def initialize(postal_code)
     result = POSTNUMERASKRA.select { |p| p === postal_code.to_i }
     raise ArgumentError, 'Postal code is invalid' if result.empty?
