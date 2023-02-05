@@ -20,6 +20,35 @@ like so:
 ### Using class methods
 
 ```ruby
+# For getting a hash of every Icelandic postal code and its locality,
+# you can use `Postnumer::all` to get a list of every valid postal code:
+Postnumer.all
+=>
+{101=>"Reykjavík",
+ 102=>"Reykjavík",
+ 103=>"Reykjavík",
+ 104=>"Reykjavík"}
+
+# `Postnumer.all_options` provides every available postal code in Iceland as an
+# array of arrays:
+Postnumer.all_options
+=>
+[["101 Reykjavík", 101],
+ ["102 Reykjavík", 102],
+ ["103 Reykjavík", 103],
+ ["104 Reykjavík", 104]]
+
+# In Rails, you can use features from the `FormOptionsHelper` such as `select`
+# or `options_for_select` to build a form field from `Postnumer.all_options`.
+
+# In Rails:
+select('customer', 'postal_code', Postnumer.all)
+
+# In Formtastic or ActiveAdmin:
+f.input(:author, :as => :select,
+                 :collection => options_for_select(Postnumer::all_options)
+)
+
 # If you just want to validate a postal code, you can do it like so:
 Postnumer.valid?(310)
 => true

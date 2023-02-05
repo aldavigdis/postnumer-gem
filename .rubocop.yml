@@ -11,6 +11,8 @@ Style/OptionalBooleanParameter:
   Enabled: false
 Metrics/AbcSize:
   Max: 20
+Metrics/MethodLength:
+  Max: 20
 Layout/HashAlignment:
   Exclude:
     - 'lib/postnumer.rb'
