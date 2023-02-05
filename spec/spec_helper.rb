@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 require 'postnumer'
+require 'action_view'
+
+class FormOptionsHelper
+  extend ActionView::Helpers::FormOptionsHelper
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

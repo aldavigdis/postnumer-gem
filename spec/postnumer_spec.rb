@@ -25,6 +25,10 @@ RSpec.describe Postnumer do
       expect(a.last).to be_a Integer
       expect(a.first[0, 3]).to eq a.last.to_s
     end
+    select_options = FormOptionsHelper.options_for_select(postal_code_options)
+    expect(select_options).to be_a String
+    expect(select_options.split("\n").length).to eq postal_code_options.length
+    expect(select_options).to start_with '<option value="101">101 Reykjavík</option>'
   end
 
   it 'finds locality from postal code using a class method' do
