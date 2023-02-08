@@ -27,14 +27,11 @@ and around the world.
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add postnumer --github=aldavigdis/postnumer-gem --branch 'main'
+    $ bundle add postnumer
 
-If bundler is not being used to manage dependencies, install the gem by
-installing the `specific_install` gem and then executing `gem specific_install`
-like so:
+If bundler is not being used to manage dependencies:
 
-    $ gem install specific_install
-    $ gem specific_install https://github.com/aldavigdis/postnumer-gem
+    $ gem install postnumer-gem
 
 ## Usage
 

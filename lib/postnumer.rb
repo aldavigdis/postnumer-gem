@@ -3,7 +3,7 @@
 # The main Postnumer classs
 class Postnumer
   # The current version of Postnumer
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
 
   # The postal code registry
   #
